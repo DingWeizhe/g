@@ -3,12 +3,13 @@ const Event = require('./event');
 const Group = require('./core/group');
 
 function requestAnimationFrame(fn) {
-  const method = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(fn) {
-    return setTimeout(fn, 16);
-  };
-  return method(fn);
+  console.error("nodejs version g, don't support 'requestAnimationFrame'", new Error().stack.split('\n')[2]);
+  // const method = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(fn) {
+  //   return setTimeout(fn, 16);
+  // };
+  // return method(fn);
 }
-const Canvas = function(cfg) {
+const Canvas = function (cfg) {
   Canvas.superclass.constructor.call(this, cfg);
 };
 
@@ -76,117 +77,121 @@ Util.augment(Canvas, {
     }
   },
   getEmitter(element, event) {
-    if (element) {
-      if (Util.isEmpty(element._getEvents())) {
-        const parent = element.get('parent');
-        if (parent && !event.propagationStopped) {
-          return this.getEmitter(parent, event);
-        }
-      } else {
-        return element;
-      }
-    }
+    console.error("nodejs version g, don't support 'getEmitter'", new Error().stack[2]);
+    // if (element) {
+    //   if (Util.isEmpty(element._getEvents())) {
+    //     const parent = element.get('parent');
+    //     if (parent && !event.propagationStopped) {
+    //       return this.getEmitter(parent, event);
+    //     }
+    //   } else {
+    //     return element;
+    //   }
+    // }
   },
   _getEventObj(type, e, point, target) {
-    const event = new Event(type, e, true, true);
-    event.x = point.x;
-    event.y = point.y;
-    event.clientX = e.clientX;
-    event.clientY = e.clientY;
-    event.currentTarget = target;
-    event.target = target;
-    return event;
+    console.error("nodejs version g, don't support '_getEventObj'", new Error().stack[2]);
+    // const event = new Event(type, e, true, true);
+    // event.x = point.x;
+    // event.y = point.y;
+    // event.clientX = e.clientX;
+    // event.clientY = e.clientY;
+    // event.currentTarget = target;
+    // event.target = target;
+    // return event;
   },
   _triggerEvent(type, e) {
-    const point = this.getPointByClient(e.clientX, e.clientY);
-    const shape = this.getShape(point.x, point.y);
-    let emitObj;
-    if (type === 'mousemove') {
-      const canvasmousemove = this._getEventObj('mousemove', e, point, this);
-      this.emit('mousemove', canvasmousemove);
+    console.error("nodejs version g, don't support '_triggerEvent'", new Error().stack[2]);
+    // const point = this.getPointByClient(e.clientX, e.clientY);
+    // const shape = this.getShape(point.x, point.y);
+    // let emitObj;
+    // if (type === 'mousemove') {
+    //   const canvasmousemove = this._getEventObj('mousemove', e, point, this);
+    //   this.emit('mousemove', canvasmousemove);
 
-      const preShape = this.get('preShape');
-      if (preShape && preShape !== shape) {
-        const mouseleave = this._getEventObj('mouseleave', e, point, preShape);
-        emitObj = this.getEmitter(preShape, e);
-        emitObj && emitObj.emit('mouseleave', mouseleave);
-      }
+    //   const preShape = this.get('preShape');
+    //   if (preShape && preShape !== shape) {
+    //     const mouseleave = this._getEventObj('mouseleave', e, point, preShape);
+    //     emitObj = this.getEmitter(preShape, e);
+    //     emitObj && emitObj.emit('mouseleave', mouseleave);
+    //   }
 
-      if (shape) {
-        const mousemove = this._getEventObj('mousemove', e, point, shape);
-        emitObj = this.getEmitter(shape, e);
-        emitObj && emitObj.emit('mousemove', mousemove);
+    //   if (shape) {
+    //     const mousemove = this._getEventObj('mousemove', e, point, shape);
+    //     emitObj = this.getEmitter(shape, e);
+    //     emitObj && emitObj.emit('mousemove', mousemove);
 
-        if (preShape !== shape) {
-          const mouseenter = this._getEventObj('mouseenter', e, point, shape);
-          emitObj && emitObj.emit('mouseenter', mouseenter, e);
-        }
-      }
+    //     if (preShape !== shape) {
+    //       const mouseenter = this._getEventObj('mouseenter', e, point, shape);
+    //       emitObj && emitObj.emit('mouseenter', mouseenter, e);
+    //     }
+    //   }
 
-      this.set('preShape', shape);
-    } else {
-      const event = this._getEventObj(type, e, point, shape || this);
-      emitObj = this.getEmitter(shape, e);
-      if (emitObj && emitObj !== this) {
-        emitObj.emit(type, event);
-      }
-      this.emit(type, event);
-    }
+    //   this.set('preShape', shape);
+    // } else {
+    //   const event = this._getEventObj(type, e, point, shape || this);
+    //   emitObj = this.getEmitter(shape, e);
+    //   if (emitObj && emitObj !== this) {
+    //     emitObj.emit(type, event);
+    //   }
+    //   this.emit(type, event);
+    // }
 
-    const el = this.get('el');
-    if (shape && !shape.get('destroyed')) {
-      el.style.cursor = shape.attr('cursor') || 'default';
-    }
+    // const el = this.get('el');
+    // if (shape && !shape.get('destroyed')) {
+    //   el.style.cursor = shape.attr('cursor') || 'default';
+    // }
   },
   _registEvents() {
-    const self = this;
-    const el = self.get('el');
+    console.error("nodejs version g, don't support '_registEvents'", new Error().stack[2]);
+    // const self = this;
+    // const el = self.get('el');
 
-    el.addEventListener('mouseout', function(e) {
-      self._triggerEvent('mouseleave', e);
-    }, false);
+    // el.addEventListener('mouseout', function (e) {
+    //   self._triggerEvent('mouseleave', e);
+    // }, false);
 
-    el.addEventListener('mouseover', function(e) {
-      self._triggerEvent('mouseenter', e);
-    }, false);
+    // el.addEventListener('mouseover', function (e) {
+    //   self._triggerEvent('mouseenter', e);
+    // }, false);
 
-    el.addEventListener('mousemove', function(e) {
-      self._triggerEvent('mousemove', e);
-    }, false);
+    // el.addEventListener('mousemove', function (e) {
+    //   self._triggerEvent('mousemove', e);
+    // }, false);
 
-    el.addEventListener('mousedown', function(e) {
-      self._triggerEvent('mousedown', e);
-    }, false);
+    // el.addEventListener('mousedown', function (e) {
+    //   self._triggerEvent('mousedown', e);
+    // }, false);
 
-    el.addEventListener('mouseup', function(e) {
-      self._triggerEvent('mouseup', e);
-    }, false);
+    // el.addEventListener('mouseup', function (e) {
+    //   self._triggerEvent('mouseup', e);
+    // }, false);
 
-    el.addEventListener('click', function(e) {
-      self._triggerEvent('click', e);
-    }, false);
+    // el.addEventListener('click', function (e) {
+    //   self._triggerEvent('click', e);
+    // }, false);
 
-    el.addEventListener('dblclick', function(e) {
-      self._triggerEvent('dblclick', e);
-    }, false);
+    // el.addEventListener('dblclick', function (e) {
+    //   self._triggerEvent('dblclick', e);
+    // }, false);
 
-    el.addEventListener('touchstart', function(e) {
-      if (!Util.isEmpty(e.touches)) {
-        self._triggerEvent('touchstart', e.touches[0]);
-      }
-    }, false);
+    // el.addEventListener('touchstart', function (e) {
+    //   if (!Util.isEmpty(e.touches)) {
+    //     self._triggerEvent('touchstart', e.touches[0]);
+    //   }
+    // }, false);
 
-    el.addEventListener('touchmove', function(e) {
-      if (!Util.isEmpty(e.touches)) {
-        self._triggerEvent('touchmove', e.touches[0]);
-      }
-    }, false);
+    // el.addEventListener('touchmove', function (e) {
+    //   if (!Util.isEmpty(e.touches)) {
+    //     self._triggerEvent('touchmove', e.touches[0]);
+    //   }
+    // }, false);
 
-    el.addEventListener('touchend', function(e) {
-      if (!Util.isEmpty(e.changedTouches)) {
-        self._triggerEvent('touchend', e.changedTouches[0]);
-      }
-    }, false);
+    // el.addEventListener('touchend', function (e) {
+    //   if (!Util.isEmpty(e.changedTouches)) {
+    //     self._triggerEvent('touchend', e.changedTouches[0]);
+    //   }
+    // }, false);
   },
   _scale() {
     const pixelRatio = this.get('pixelRatio');
@@ -195,7 +200,7 @@ Util.augment(Canvas, {
   _setCanvas() {
     const canvasDOM = this.get('canvasDOM');
     this.set('el', canvasDOM);
-    this.set('context', canvasDOM.getContext('2d'));
+    // this.set('context', canvasDOM.getContext('2d'));
     this.set('canvas', this);
   },
   _setGlobalParam() {
@@ -210,39 +215,39 @@ Util.augment(Canvas, {
     this._setLayer();
   },
   _setContainer() {
-    const containerId = this.get('containerId');
-    let containerDOM = this.get('containerDOM');
-    if (!containerDOM) {
-      containerDOM = document.getElementById(containerId);
-      this.set('containerDOM', containerDOM);
-    }
-    Util.modifyCSS(containerDOM, {
-      position: 'relative'
-    });
+    // const containerId = this.get('containerId');
+    // const containerDOM = this.get('containerDOM');
+    // if (!containerDOM) {
+    //   containerDOM = document.getElementById(containerId);
+    //   this.set('containerDOM', containerDOM);
+    // }
+    // Util.modifyCSS(containerDOM, {
+    //   position: 'relative'
+    // });
   },
   _setLayer() {
-    const containerDOM = this.get('containerDOM');
-    const canvasId = Util.uniqueId('canvas_');
-    if (containerDOM) {
-      const canvasDOM = Util.createDom('<canvas id="' + canvasId + '"></canvas>');
-      containerDOM.appendChild(canvasDOM);
-      this.set('canvasDOM', canvasDOM);
-    }
+    // const containerDOM = this.get('containerDOM');
+    // const canvasId = Util.uniqueId('canvas_');
+    // if (containerDOM) {
+    //   const canvasDOM = Util.createDom('<canvas id="' + canvasId + '"></canvas>');
+    //   containerDOM.appendChild(canvasDOM);
+    //   this.set('canvasDOM', canvasDOM);
+    // }
   },
   _setInitSize() {
     this.changeSize(this.get('width'), this.get('height'));
   },
   _reSize() {
-    const canvasDOM = this.get('canvasDOM');
-    const widthCanvas = this.get('widthCanvas');
-    const heightCanvas = this.get('heightCanvas');
-    const widthStyle = this.get('widthStyle');
-    const heightStyle = this.get('heightStyle');
+    // const canvasDOM = this.get('canvasDOM');
+    // const widthCanvas = this.get('widthCanvas');
+    // const heightCanvas = this.get('heightCanvas');
+    // const widthStyle = this.get('widthStyle');
+    // const heightStyle = this.get('heightStyle');
 
-    canvasDOM.style.width = widthStyle;
-    canvasDOM.style.height = heightStyle;
-    canvasDOM.setAttribute('width', widthCanvas);
-    canvasDOM.setAttribute('height', heightCanvas);
+    // canvasDOM.style.width = widthStyle;
+    // canvasDOM.style.height = heightStyle;
+    // canvasDOM.setAttribute('width', widthCanvas);
+    // canvasDOM.setAttribute('height', heightCanvas);
   },
   getWidth() {
     const pixelRatio = this.get('pixelRatio');

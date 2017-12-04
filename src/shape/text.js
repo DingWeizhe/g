@@ -1,7 +1,7 @@
 const Util = require('../util/index');
 const Shape = require('../core/shape');
 const Inside = require('./util/inside');
-
+const Canvas = require('canvas');
 const CText = function(cfg) {
   CText.superclass.constructor.call(this, cfg);
 };
@@ -251,7 +251,7 @@ Util.augment(CText, {
     let width = 0;
 
     if (Util.isNil(text)) return undefined;
-    const context = document.createElement('canvas').getContext('2d');
+    const context = Canvas.createCanvas().getContext('2d');
     context.save();
     context.font = font;
     if (textArr) {

@@ -98,7 +98,7 @@
     }
     canvas1.draw();
 
-    window.requestAnimationFrame(showAnimate);
+    // window.requestAnimationFrame(showAnimate);
   }
   context.fillStyle = "Black";
   context.font      = "normal 16pt Arial";
