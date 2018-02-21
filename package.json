@@ -1,6 +1,6 @@
 {
-  "name": "antv-g-node",
-  "version": "2.0.1",
+  "name": "@ay/g-node",
+  "version": "2.0.8",
   "description": "nodejs version @antv/g",
   "keywords": [
     "canvas",
@@ -42,19 +42,10 @@
     "webpack": "^3.4.1"
   },
   "scripts": {
-    "build": "npx babel ./src/**/*.js index.js --out-dir dist/",
-    "ci": "npm run lint && npm run test",
-    "compress": "uglifyjs --compress --mangle --output dist/g-$npm_package_version.min.js -- build/g.js",
-    "coverage": "npm run coverage-generator && npm run coverage-viewer",
-    "coverage-viewer": "torch-coverage",
-    "coverage-generator": "torch --coverage --compile --renderer --recursive test/unit",
-    "dev": "webpack --config webpack-dev.config.js",
-    "dist": "rm -rf dist && mkdir dist && npm run build && npm run compress",
-    "prepublishOnly": "npm run dist",
+    "build": "npx babel --presets=es2015 src --out-dir dist/",
+    "ci": "npm run lint",
     "lint": "eslint ./",
-    "lint-fix": "eslint --fix ./",
-    "test": "torch --compile --renderer --recursive ./test/unit",
-    "test-live": "torch --compile --renderer --interactive --recursive ./test/unit"
+    "lint-fix": "eslint --fix ./"
   },
   "pre-commit": {
     "run": [

@@ -1,20 +1,15 @@
-const MatrixUtil = require('../../util/matrix');
-const PathUtil = require('../../util/path');
-const Util = require('../../util/index');
-const d3Ease = require('d3-ease');
-const d3Timer = require('d3-timer');
-const { interpolate, interpolateArray } = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
+// const MatrixUtil = require('../../util/matrix');
+// const PathUtil = require('../../util/path');
+// const Util = require('../../util/index');
+// const d3Ease = require('d3-ease');
+// const d3Timer = require('d3-timer');
+// const { interpolate, interpolateArray } = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
 
 module.exports = {
   /**
    * 执行动画
-   * @param  {Object}   toProps  动画最终状态
-   * @param  {Number}   duration 动画执行时间
-   * @param  {String}   easing   动画缓动效果
-   * @param  {Function} callback 动画执行后的回调
-   * @param  {Number}   delay    动画延迟时间
    */
-  animate(toProps, duration, easing, callback, delay = 0) {
+  animate() {
     console.error("nodejs version g, don't support 'animate'", new Error().stack.split('\n')[2]);
     // const self = this;
     // const canvas = self.get('canvas');

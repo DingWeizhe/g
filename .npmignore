@@ -72,3 +72,16 @@ build/g.js.map
 
 src/
 test/
+demos/
+bin/
+.vscode/
+.eslintignore
+.editorconfig
+.eslintrc
+.torch.compile.opts.js
+.travis.yml
+CHANGELOG.md
+ISSUE_TEMPLATE.md
+README.md
+webpack-dev.config.js
+webpack.config.js

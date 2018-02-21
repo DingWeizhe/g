@@ -1,15 +1,15 @@
 const Util = require('./util/index');
-const Event = require('./event');
+// const Event = require('./event');
 const Group = require('./core/group');
 
-function requestAnimationFrame(fn) {
-  console.error("nodejs version g, don't support 'requestAnimationFrame'", new Error().stack.split('\n')[2]);
+// function requestAnimationFrame() {
+  // console.error("nodejs version g, don't support 'requestAnimationFrame'", new Error().stack.split('\n')[2]);
   // const method = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(fn) {
   //   return setTimeout(fn, 16);
   // };
   // return method(fn);
-}
-const Canvas = function (cfg) {
+// }
+const Canvas = function(cfg) {
   Canvas.superclass.constructor.call(this, cfg);
 };
 
@@ -76,7 +76,7 @@ Util.augment(Canvas, {
       this._registEvents();
     }
   },
-  getEmitter(element, event) {
+  getEmitter() {
     console.error("nodejs version g, don't support 'getEmitter'", new Error().stack[2]);
     // if (element) {
     //   if (Util.isEmpty(element._getEvents())) {
@@ -89,7 +89,7 @@ Util.augment(Canvas, {
     //   }
     // }
   },
-  _getEventObj(type, e, point, target) {
+  _getEventObj() {
     console.error("nodejs version g, don't support '_getEventObj'", new Error().stack[2]);
     // const event = new Event(type, e, true, true);
     // event.x = point.x;
@@ -100,7 +100,7 @@ Util.augment(Canvas, {
     // event.target = target;
     // return event;
   },
-  _triggerEvent(type, e) {
+  _triggerEvent() {
     console.error("nodejs version g, don't support '_triggerEvent'", new Error().stack[2]);
     // const point = this.getPointByClient(e.clientX, e.clientY);
     // const shape = this.getShape(point.x, point.y);
@@ -198,9 +198,8 @@ Util.augment(Canvas, {
     this.scale(pixelRatio, pixelRatio);
   },
   _setCanvas() {
-    const canvasDOM = this.get('canvasDOM');
-    this.set('el', canvasDOM);
-    // this.set('context', canvasDOM.getContext('2d'));
+    const el = this.get('el');
+    this.set('context', el.getContext('2d'));
     this.set('canvas', this);
   },
   _setGlobalParam() {
@@ -312,12 +311,12 @@ Util.augment(Canvas, {
   draw() {
     const self = this;
     function drawInner() {
-      self.setSilent('animateHandler', requestAnimationFrame(() => {
-        self.setSilent('animateHandler', undefined);
-        if (self.get('toDraw')) {
-          drawInner();
-        }
-      }));
+      // self.setSilent('animateHandler', requestAnimationFrame(() => {
+      //   self.setSilent('animateHandler', undefined);
+      //   if (self.get('toDraw')) {
+      //     drawInner();
+      //   }
+      // }));
       self.beforeDraw();
       try {
         const context = self.get('context');

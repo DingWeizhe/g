@@ -1,6 +1,6 @@
 // const TABLE = document.createElement('table');
 // const TABLE_TR = document.createElement('tr');
-const FRAGMENT_REG = /^\s*<(\w+|!)[^>]*>/;
+// const FRAGMENT_REG = /^\s*<(\w+|!)[^>]*>/;
 // const CONTAINERS = {
 //   tr: document.createElement('tbody'),
 //   tbody: TABLE,
@@ -12,7 +12,7 @@ const FRAGMENT_REG = /^\s*<(\w+|!)[^>]*>/;
 // };
 
 module.exports = {
-  getBoundingClientRect(node) {
+  getBoundingClientRect() {
     console.error("nodejs version g, don't support 'getBoundingClientRect'", new Error().stack.split('\n')[2]);
     // const rect = node.getBoundingClientRect();
     // const top = document.documentElement.clientTop;
@@ -26,11 +26,8 @@ module.exports = {
   },
   /**
    * 获取样式
-   * @param  {Object} dom DOM节点
-   * @param  {String} name 样式名
-   * @return {String} 属性值
    */
-  getStyle(dom, name) {
+  getStyle() {
     console.error("nodejs version g, don't support 'getStyle'", new Error().stack.split('\n')[2]);
     // if (window.getComputedStyle) {
     //   return window.getComputedStyle(dom, null)[name];
@@ -48,10 +45,8 @@ module.exports = {
   },
   /**
    * 创建DOM 节点
-   * @param  {String} str Dom 字符串
-   * @return {HTMLElement}  DOM 节点
    */
-  createDom(str) {
+  createDom() {
     console.log("nodejs version g don't support 'createDom'", new Error().stack.split('\n')[2]);
     // let name = FRAGMENT_REG.test(str) && RegExp.$1;
     // if (!(name in CONTAINERS)) {
@@ -68,10 +63,8 @@ module.exports = {
   },
   /**
    * 获取宽度
-   * @param  {HTMLElement} el  dom节点
-   * @return {Number} 宽度
    */
-  getWidth(el) {
+  getWidth() {
     console.error("nodejs version g, don't support 'getWidth'", new Error().stack[2]);
     // let width = this.getStyle(el, 'width');
     // if (width === 'auto') {
@@ -81,10 +74,8 @@ module.exports = {
   },
   /**
    * 获取高度
-   * @param  {HTMLElement} el dom节点
-   * @return {Number} 高度
    */
-  getHeight(el) {
+  getHeight() {
     console.error("nodejs version g, don't support 'getHeight'", new Error().stack[2]);
     // let height = this.getStyle(el, 'height');
     // if (height === 'auto') {
@@ -94,10 +85,8 @@ module.exports = {
   },
   /**
    * 获取外层高度
-   * @param  {HTMLElement} el dom节点
-   * @return {Number} 高度
    */
-  getOuterHeight(el) {
+  getOuterHeight() {
     console.error("nodejs version g, don't support 'getOuterHeight'", new Error().stack[2]);
     // const height = this.getHeight(el);
     // const bTop = parseFloat(this.getStyle(el, 'borderTopWidth')) || 0;
@@ -108,10 +97,8 @@ module.exports = {
   },
   /**
    * 获取外层宽度
-   * @param  {HTMLElement} el dom节点
-   * @return {Number} 宽度
    */
-  getOuterWidth(el) {
+  getOuterWidth() {
     console.error("nodejs version g, don't support 'getOuterWidth'", new Error().stack[2]);
     // const width = this.getWidth(el);
     // const bLeft = parseFloat(this.getStyle(el, 'borderLeftWidth')) || 0;
@@ -122,12 +109,8 @@ module.exports = {
   },
   /**
    * 添加事件监听器
-   * @param  {Object} target DOM对象
-   * @param  {String} eventType 事件名
-   * @param  {Funtion} callback 回调函数
-   * @return {Object} 返回对象
    */
-  addEventListener(target, eventType, callback) {
+  addEventListener() {
     console.error("nodejs version g, don't support 'addEventListener'", new Error().stack[2]);
     // if (target.addEventListener) {
     //   target.addEventListener(eventType, callback, false);
@@ -145,7 +128,7 @@ module.exports = {
     //   };
     // }
   },
-  requestAnimationFrame(fn) {
+  requestAnimationFrame() {
     console.error("nodejs version g, don't support 'requestAnimationFrame'", new Error().stack.split('\n')[2]);
     // const method = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(fn) {
     //   return setTimeout(fn, 16);
