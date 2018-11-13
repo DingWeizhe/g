@@ -429,6 +429,7 @@ Util.augment(PathSegment, {
         const scaleX = (rx > ry) ? 1 : rx / ry;
         const scaleY = (rx > ry) ? ry / rx : 1;
 
+        if (isNaN(theta) || !isNaN(dTheta)) break;
         context.translate(cx, cy);
         context.rotate(psi);
         context.scale(scaleX, scaleY);
