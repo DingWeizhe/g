@@ -420,8 +420,8 @@ Util.augment(PathSegment, {
         const cy = p2;
         const rx = p[3];
         const ry = p[4];
-        const theta = p[5];
-        const dTheta = p[6];
+        const theta = p[5] || 0;
+        const dTheta = p[6] || 0;
         const psi = p[7];
         const fs = p[8];
 
@@ -429,7 +429,6 @@ Util.augment(PathSegment, {
         const scaleX = (rx > ry) ? 1 : rx / ry;
         const scaleY = (rx > ry) ? ry / rx : 1;
 
-        if (isNaN(theta) || !isNaN(dTheta)) break;
         context.translate(cx, cy);
         context.rotate(psi);
         context.scale(scaleX, scaleY);
