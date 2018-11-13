@@ -1,7 +1,9 @@
 const Util = require('../util/index');
 const Shape = require('../core/shape');
 const Inside = require('./util/inside');
-const Canvas = require('canvas');
+let Canvas = require('canvas');
+if (Canvas.createCanvas === undefined) Canvas = window.Canvas;
+
 const CText = function(cfg) {
   CText.superclass.constructor.call(this, cfg);
 };
